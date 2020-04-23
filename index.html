@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>ToDo List</title>
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+	</head>
+	<body>
+		<div class="todo">
+			<div class="header">
+				<h1>ToDo List</h1>
+				<input type="text" class="todoInput" placeholder="Enter your task...">
+				<button class="addBtn">Add</button>
+			</div>
+			<div class="todoList">
+				<h3>A Task List:</h3>
+				<p class="alertInfo">No tasks on the list.</p>
+				<ul>
+					< <li id='test'>Drink a coffee.<div class="tools"><button class="complete"><i
+									class="fas fa-check"></i></button><button class="edit">EDIT</button><button
+								class="delete"><i class="fas fa-times"></i></button>
+						</div>
+						</li>
+						<li id='test2'>Eat a breakfast.<div class="tools"><button class="complete"><i
+										class="fas fa-check"></i></button><button class="edit">EDIT</button><button
+									class="delete"><i class="fas fa-times"></i></button>
+							</div>
+						</li>
+						<li id='test3'>Windows cleaning.<div class="tools"><button class="complete"><i
+										class="fas fa-check"></i></button><button class="edit">EDIT</button><button
+									class="delete"><i class="fas fa-times"></i></button>
+							</div>
+						</li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="popup">
+			<h3>Edit a task:</h3>
+			<div class="popupBody">
+				<p class="popupInfo"></p>
+				<input type="text" class="popupInput" placeholder="Wprowadź nowę treść zadania...">
+				<button class="popupBtn accept">Confirm</button>
+				<button class="popupBtn cancel">Cancel</button>
+			</div>
+		</div>
+		<script src="./js/main.js"></script>
+	</body>
+</html>
