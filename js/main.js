@@ -3,13 +3,13 @@ let $alertInfo; //info o braku zadań
 let $addBtn; //przycisk dodawania nowych elementów
 let $ulList; //lista zadań
 let $newTask; //nowe LI, nowe zadanie
-
 let $popup; //pobrany popup
 let $popupInfo; //alert w popupie po dodaniu pustego tekstu
 let $editedTodo; //edytowany task
 let $popupInput; //test wpisywany w knie popup
 let $addPopupBtn; //przycisk "confirm" w popupie
 let $closeTodoBtn; //zamknij popup
+let $idNumber = 0;
 
 const main = () => {
     prepareDOMElements();
@@ -33,11 +33,14 @@ const prepareDOMEvents = () => {
     $addBtn.addEventListener('click', addNewTask);
     $ulList.addEventListener('click', checkClick);
     $closeTodoBtn.addEventListener('click', closePopup);
+    $addPopupBtn.addEventListener('click', changeTodo);
 };
 
 const addNewTask = () => {  if ($todoInput.value !== '') {
+    $idNumber++;
     $newTask = document.createElement('li');
     $newTask.textContent = $todoInput.value;
+    $newTask.setAttribute('id', `todo-${$idNumber}`);
     $ulList.appendChild($newTask);
     $todoInput.value = '';
     $alertInfo.innerText = '';
@@ -67,7 +70,6 @@ const createToolsArea = () => {
     toolsPanel.appendChild(completeBtn);
     toolsPanel.appendChild(editBtn);
     toolsPanel.appendChild(deleteBtn);
-
 };
 
 const checkClick = (event) => {
@@ -77,7 +79,7 @@ const checkClick = (event) => {
     } else if (
         event.target.closest('button').className === 'edit'
     ) {
-        editTask();
+        editTask(event);
     } else if (
         event.target.closest('button').className === 'delete'
     ) {
@@ -85,12 +87,26 @@ const checkClick = (event) => {
     };
 };
 
-const editTask = () => {
+const editTask = (event) => {
+    const oldTodo = event.target.closest('li').id;
+    $editedTodo = document.getElementById(oldTodo);
+    $popupInput.value = $editedTodo.firstChild.textContent;
     $popup.style.display = 'flex';
+};
+
+const changeTodo = () => {
+    if ($popupInput.value !== ''){
+        $editedTodo.firstChild.textContent = $popupInput.value;
+        $popup.style.display = '';
+        $popupInfo.innerText = '';
+    } else {
+        $popupInfo.innerText = 'You must enter some content!'
+    };
 };
 
 const closePopup = () => {
         $popup.style.display = '';
+        $popupInfo.innerText = '';
 };
 
 document.addEventListener('DOMContentLoaded', main);
