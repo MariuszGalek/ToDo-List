@@ -4,6 +4,13 @@ let $addBtn; //przycisk dodawania nowych elementów
 let $ulList; //lista zadań
 let $newTask; //nowe LI, nowe zadanie
 
+let $popup; //pobrany popup
+let $popupInfo; //alert w popupie po dodaniu pustego tekstu
+let $editedTodo; //edytowany task
+let $popupInput; //test wpisywany w knie popup
+let $addPopupBtn; //przycisk "confirm" w popupie
+let $closeTodoBtn; //zamknij popup
+
 const main = () => {
     prepareDOMElements();
     prepareDOMEvents();
@@ -15,12 +22,17 @@ const prepareDOMElements = () => {
     $alertInfo = document.querySelector('.alertInfo');
     $addBtn = document.querySelector('.addBtn');
     $ulList = document.querySelector('.todoList ul');
-
+    $popup = document.querySelector('.popup');
+    $popupInfo = document.querySelector('.popupInfo');
+    $popupInput = document.querySelector('.popupInput');
+    $addPopupBtn = document.querySelector('.accept');
+    $closeTodoBtn = document.querySelector('.cancel');
 };
 
 const prepareDOMEvents = () => {
     $addBtn.addEventListener('click', addNewTask);
     $ulList.addEventListener('click', checkClick);
+    $closeTodoBtn.addEventListener('click', closePopup);
 };
 
 const addNewTask = () => {  if ($todoInput.value !== '') {
@@ -65,12 +77,20 @@ const checkClick = (event) => {
     } else if (
         event.target.closest('button').className === 'edit'
     ) {
-        console.log('edit');
+        editTask();
     } else if (
         event.target.closest('button').className === 'delete'
     ) {
         console.log('delete');
     };
+};
+
+const editTask = () => {
+    $popup.style.display = 'flex';
+};
+
+const closePopup = () => {
+        $popup.style.display = '';
 };
 
 document.addEventListener('DOMContentLoaded', main);
