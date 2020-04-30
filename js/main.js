@@ -10,6 +10,7 @@ let $popupInput; //test wpisywany w knie popup
 let $addPopupBtn; //przycisk "confirm" w popupie
 let $closeTodoBtn; //zamknij popup
 let $idNumber = 0;
+let $allTasks;
 
 const main = () => {
     prepareDOMElements();
@@ -27,6 +28,7 @@ const prepareDOMElements = () => {
     $popupInput = document.querySelector('.popupInput');
     $addPopupBtn = document.querySelector('.accept');
     $closeTodoBtn = document.querySelector('.cancel');
+    $allTasks = $ulList.getElementsByTagName('li');
 };
 
 const prepareDOMEvents = () => {
@@ -83,7 +85,7 @@ const checkClick = (event) => {
     } else if (
         event.target.closest('button').className === 'delete'
     ) {
-        console.log('delete');
+        deleteTask(event);
     };
 };
 
@@ -107,6 +109,14 @@ const changeTodo = () => {
 const closePopup = () => {
         $popup.style.display = '';
         $popupInfo.innerText = '';
+};
+
+const deleteTask = (event) => {
+    const deleteTodo = event.target.closest('li');
+    deleteTodo.remove();
+    if ($allTasks.length === 0) {
+        $alertInfo.innerText = 'No tasks on the list.'
+    }
 };
 
 document.addEventListener('DOMContentLoaded', main);
