@@ -36,6 +36,7 @@ const prepareDOMEvents = () => {
     $ulList.addEventListener('click', checkClick);
     $closeTodoBtn.addEventListener('click', closePopup);
     $addPopupBtn.addEventListener('click', changeTodo);
+    $todoInput.addEventListener('keyup', checkEnter);
 };
 
 const addNewTask = () => {  if ($todoInput.value !== '') {
@@ -50,6 +51,12 @@ const addNewTask = () => {  if ($todoInput.value !== '') {
     } else {
         $alertInfo.innerText = "Enter your task first!";
     };
+};
+
+const checkEnter = () => {
+    if(event.keyCode === 13) {
+        addNewTask();
+    }
 };
 
 const createToolsArea = () => {
