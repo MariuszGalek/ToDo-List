@@ -17,7 +17,6 @@ const main = () => {
     prepareDOMEvents();
 };
 
-
 const prepareDOMElements = () => {
     $todoInput = document.querySelector('.todoInput');
     $alertInfo = document.querySelector('.alertInfo');
@@ -63,19 +62,15 @@ const createToolsArea = () => {
     const toolsPanel = document.createElement('div');
     toolsPanel.classList.add('tools');
     $newTask.appendChild(toolsPanel);
-
     const completeBtn = document.createElement('button');
     completeBtn.classList.add('complete');
     completeBtn.innerHTML = '<i class="fa fa-check"></i>';
-
     const editBtn = document.createElement('button');
     editBtn.classList.add('edit');
     editBtn.innerText='EDIT';
-
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('delete');
     deleteBtn.innerHTML = '<i class="fa fa-times">';
-
     toolsPanel.appendChild(completeBtn);
     toolsPanel.appendChild(editBtn);
     toolsPanel.appendChild(deleteBtn);
